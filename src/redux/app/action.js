@@ -37,7 +37,7 @@ export const getTodos = () => (dispatch) => {
     .then((res) => res.json())
     .then((res) => {
       //success
-      console.log(res);
+      // console.log(res);
       const successAction = getTodosSuccess(res);
       dispatch(successAction);
     })
@@ -89,22 +89,27 @@ export const addTodo = ({ title, status, id }) => {
 };
 
 export const addTodos = (text) => (dispatch) => {
+  console.log(text);
   const requestAction = addTodosRequest();
   dispatch(requestAction);
-  return fetch("https://json-server-mocker-masai.herokuapp.com/tasks", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      title: text,
-      status: false
-    })
-  })
+  return fetch(
+    `https://api.github.com/search/repositories?q=${text}&page=2&per_page=4`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title: text,
+        status: false
+      })
+    }
+  )
     .then((res) => res.json())
     .then((res) => {
       //success
       const successAction = addTodosSuccess(res);
+      console.log(successAction, "search data");
       dispatch(successAction);
     })
     .catch((res) => {

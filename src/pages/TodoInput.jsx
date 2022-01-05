@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
+
+export const AppContext = createContext();
 
 function TodoInput({ onAdd }) {
   const [state, setState] = useState("");
@@ -8,7 +10,7 @@ function TodoInput({ onAdd }) {
       <input
         value={state}
         onChange={(e) => setState(e.target.value)}
-        placeholder="Add something"
+        placeholder="Search Repository On Github"
       />
       <button
         onClick={() => {
@@ -16,7 +18,7 @@ function TodoInput({ onAdd }) {
           setState("");
         }}
       >
-        ADD
+        SEARCH
       </button>
     </div>
   );

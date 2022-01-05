@@ -36,7 +36,9 @@ function PrintRepo({ allFunc }) {
           flexDirection: "column",
           gap: "2rem",
           marginBottom: "20px",
-          marginTop: "20px"
+          marginTop: "20px",
+          background: "black",
+          color: "white"
         }}
       >
         {isLoading && <h3>Loading...</h3>}

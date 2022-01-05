@@ -11,7 +11,6 @@ function Home() {
   const [page, setPage] = useState(1);
   const [perPageInput, setPerPageInput] = useState(1);
   const [perPage, setPerPage] = useState(5);
-
   const dispatch = useDispatch();
   const handleAdd = (text) => {
     dispatch(getRepo(text));

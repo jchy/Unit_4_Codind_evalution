@@ -9,9 +9,20 @@ function Login() {
     dispatch(action);
   };
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        marginLeft: "20%"
+      }}
+    >
       <h3>Login</h3>
-      <button onClick={handleAdd}>Please click on this to login</button>
+      <div>
+        <button onClick={handleAdd} style={{ width: "200px" }}>
+          Please click on this to login
+        </button>
+      </div>
     </div>
   );
 }

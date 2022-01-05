@@ -7,12 +7,12 @@ import {
   getTodosSuccess
 } from "../redux/app/action";
 
-export const getTodos = (text) => (dispatch) => {
+export const getTodos = (text, page) => (dispatch) => {
   // pre fetch
   const requestAction = getTodosRequest();
   dispatch(requestAction);
   return fetch(
-    `https://api.github.com/search/repositories?q=${text}&page=2&per_page=4`
+    `https://api.github.com/search/repositories?q=${text}&page=2&per_page=${page}`
   )
     .then((res) => res.json())
     .then((res) => {

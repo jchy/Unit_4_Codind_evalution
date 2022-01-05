@@ -6,7 +6,7 @@ function SignIn() {
   const dispatch = useDispatch();
 
   const handleAdd = () => {
-    const action = loginSuccess(Date.now());
+    const action = loginSuccess(true);
     dispatch(action);
   };
   const isAuth = useSelector((state) => state.auth.isAuth);

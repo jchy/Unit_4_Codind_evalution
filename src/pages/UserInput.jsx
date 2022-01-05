@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const AppContext = createContext();
 
-function TodoInput({ onAdd, onSearch }) {
+function UserInput({ onAdd, onSearch }) {
   const [state, setState] = useState("masai");
   const [page, setPage] = useState(1);
 
@@ -40,4 +40,4 @@ function TodoInput({ onAdd, onSearch }) {
   );
 }
 
-export default TodoInput;
+export default UserInput;

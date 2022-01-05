@@ -1,35 +1,35 @@
 import { appConstants } from "./actionTypes";
 
-export const getTodosRequest = () => {
+export const getRepoRequest = () => {
   return {
-    type: appConstants.GET_TODO_REQUEST,
+    type: appConstants.GET_REPO_REQUEST,
     payload: {
       isLoading: true
     }
   };
 };
 
-export const getTodosSuccess = (todos) => {
+export const getRepoSuccess = (todos) => {
   return {
-    type: appConstants.GET_TODO_SUCCESS,
+    type: appConstants.GET_REPO_SUCCESS,
     payload: {
       todos: todos
     }
   };
 };
 
-export const getTodosFailure = () => {
+export const getRepoFailure = () => {
   return {
-    type: appConstants.GET_TODO_FAILURE,
+    type: appConstants.GET_REPO_FAILURE,
     payload: {
       isError: true
     }
   };
 };
 
-export const getTodos = () => (dispatch) => {
+export const getRepo = () => (dispatch) => {
   // pre fetch
-  const requestAction = getTodosRequest();
+  const requestAction = getRepoRequest();
   dispatch(requestAction);
   return fetch(
     "https://api.github.com/search/repositories?q=masai&page=2&per_page=4"
@@ -38,59 +38,57 @@ export const getTodos = () => (dispatch) => {
     .then((res) => {
       //success
       // console.log(res);
-      const successAction = getTodosSuccess(res);
+      const successAction = getRepoSuccess(res);
       dispatch(successAction);
     })
     .catch((res) => {
       // failure
-      const failureAction = getTodosFailure();
+      const failureAction = getRepoFailure();
       dispatch(failureAction);
     });
 };
 
-export const addTodosRequest = () => {
+export const addRepoRequest = () => {
   return {
-    type: appConstants.ADD_TODO_REQUEST,
+    type: appConstants.ADD_REPO_REQUEST,
     payload: {
       isLoading: true
     }
   };
 };
 
-export const addTodosSuccess = (todos) => {
+export const addRepoSuccess = (todos) => {
   return {
-    type: appConstants.ADD_TODO_SUCCESS,
+    type: appConstants.ADD_REPO_SUCCESS,
     payload: {
       todos: todos
     }
   };
 };
 
-export const addTodosFailure = () => {
+export const addRepoFailure = () => {
   return {
-    type: appConstants.ADD_TODO_FAILURE,
+    type: appConstants.ADD_REPO_FAILURE,
     payload: {
       isError: true
     }
   };
 };
 
-// actionCreators
-// type is mandatory, string
-export const addTodo = ({ title, status, id }) => {
-  return {
-    type: appConstants.ADD_TODO,
-    payload: {
-      title,
-      status,
-      id
-    }
-  };
-};
+// export const addRepo = ({ title, status, id }) => {
+//   return {
+//     type: appConstants.ADD_REPO,
+//     payload: {
+//       title,
+//       status,
+//       id
+//     }
+//   };
+// };
 
-export const addTodos = (text) => (dispatch) => {
+export const addRepo = (text) => (dispatch) => {
   console.log(text);
-  const requestAction = addTodosRequest();
+  const requestAction = addRepoRequest();
   dispatch(requestAction);
   return fetch(
     `https://api.github.com/search/repositories?q=${text}&page=2&per_page=4`,
@@ -108,27 +106,13 @@ export const addTodos = (text) => (dispatch) => {
     .then((res) => res.json())
     .then((res) => {
       //success
-      const successAction = addTodosSuccess(res);
+      const successAction = addRepoSuccess(res);
       console.log(successAction, "search data");
       dispatch(successAction);
     })
     .catch((res) => {
       // failure
-      const failureAction = addTodosFailure();
+      const failureAction = addRepoFailure();
       dispatch(failureAction);
     });
 };
-
-export const removeTodo = (id) => ({
-  type: appConstants.REMOVE_TODO_ITEM,
-  payload: {
-    id: id
-  }
-});
-
-export const toggleTodo = (id) => ({
-  type: appConstants.TOGGLE_TODO_STATUS,
-  payload: {
-    id: id
-  }
-});

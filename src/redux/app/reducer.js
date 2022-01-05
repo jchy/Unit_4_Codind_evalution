@@ -1,4 +1,3 @@
-import { saveData } from "../../utils/localStorage";
 import { appConstants } from "./actionTypes";
 
 const initState = {
@@ -10,48 +9,47 @@ const initState = {
 function reducer(state = initState, action) {
   switch (action.type) {
     case appConstants.LOGIN_SUCCESS: {
-      saveData("token", action.payload.token);
       return {
         ...state,
         isAuth: true,
         token: action.payload.token
       };
     }
-    case appConstants.GET_TODO_REQUEST: {
+    case appConstants.GET_REPO_REQUEST: {
       return {
         ...state,
         isLoading: true,
         isError: false
       };
     }
-    case appConstants.GET_TODO_SUCCESS: {
+    case appConstants.GET_REPO_SUCCESS: {
       return {
         ...state,
         todos: action.payload.todos.items,
         isLoading: false
       };
     }
-    case appConstants.GET_TODO_FAILURE: {
+    case appConstants.GET_REPO_FAILURE: {
       return {
         ...state,
         isLoading: false,
         isError: true
       };
     }
-    case appConstants.ADD_TODO_REQUEST: {
+    case appConstants.ADD_REPO_REQUEST: {
       return {
         ...state,
         isLoading: true,
         isError: false
       };
     }
-    case appConstants.ADD_TODO_SUCCESS: {
+    case appConstants.ADD_REPO_SUCCESS: {
       return {
         ...state,
         isLoading: false
       };
     }
-    case appConstants.ADD_TODO_FAILURE: {
+    case appConstants.ADD_REPO_FAILURE: {
       return {
         ...state,
         isLoading: false,
@@ -59,26 +57,8 @@ function reducer(state = initState, action) {
       };
     }
 
-    case appConstants.ADD_TODO: {
+    case appConstants.ADD_REPO: {
       return { ...state, todos: [...state.todos, action.payload] };
-    }
-    case appConstants.REMOVE_TODO_ITEM: {
-      // TODO
-      return {
-        ...state,
-        todos: state.todos.filter((item) => item.id !== action?.payload?.id)
-      };
-    }
-    case appConstants.TOGGLE_TODO_STATUS: {
-      // TODO
-      return {
-        ...state,
-        todos: state.todos.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, status: !item.status }
-            : item
-        )
-      };
     }
     default:
       return state;
@@ -86,8 +66,3 @@ function reducer(state = initState, action) {
 }
 
 export default reducer;
-
-// 1. true
-// 2. false
-// 3. error
-// 4. others

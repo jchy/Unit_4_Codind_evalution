@@ -1,56 +1,25 @@
-// import { useDispatch } from "react-redux";
-// import { v4 as uuid } from "uuid";
-// import {
-//   addTodosFailure,
-//   addTodosRequest,
-//   addTodosSuccess
-// } from "../redux/app/action";
-// import { addTodos, getTodos } from "./api";
-// import TodoInput from "./TodoInput";
-// import TodoList from "./TodoList";
-
-// function Todo() {
-//   const dispatch = useDispatch();
-//   const handleAdd = (text) => {
-//     dispatch(addTodos(text)).then((res) => {
-//       dispatch(getTodos(text));
-//     });
-//   };
-
-//   return (
-//     <div>
-//       <TodoInput onAdd={handleAdd} />
-//       <TodoList />
-//     </div>
-//   );
-// }
-
-// export default Todo;
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuid } from "uuid";
 import Pagination from "./Pagination";
-import { addTodos, getTodos } from "./api";
-import TodoInput from "./TodoInput";
-import TodoList from "./TodoList";
+import { getRepo } from "./api";
+import UserInput from "./UserInput";
+import PrintRepo from "./PrintRepo";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 
-function Todo() {
+function Home() {
   const [page, setPage] = useState(1);
   const [perPageInput, setPerPageInput] = useState(1);
   const [perPage, setPerPage] = useState(5);
 
   const dispatch = useDispatch();
   const handleAdd = (text) => {
-    dispatch(addTodos(text)).then((res) => {
-      dispatch(getTodos(text));
-    });
+    dispatch(getRepo(text));
   };
 
   const handlePage = (page) => {
-    dispatch(addTodos(page)).then((res) => {
-      dispatch(getTodos(page));
-    });
+    dispatch(getRepo(page));
+    // });
   };
 
   const changePageTo = (num) => {
@@ -71,8 +40,8 @@ function Todo() {
   }
   return (
     <div>
-      <TodoInput onAdd={handleAdd} onSearch={handlePage} />
-      <TodoList allFunc={[changePageTo, perPage, page, setPage]} />
+      <UserInput onAdd={handleAdd} onSearch={handlePage} />
+      <PrintRepo allFunc={[changePageTo, perPage, page, setPage]} />
       <Pagination
         currentPage={page}
         onClickCallback={(page) => changePageTo(page)}
@@ -82,4 +51,4 @@ function Todo() {
   );
 }
 
-export default Todo;
+export default Home;

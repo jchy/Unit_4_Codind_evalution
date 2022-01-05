@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 import Home from "../pages/Home";
-import About from "../pages/About";
+import Search from "../pages/Search";
 import SignIn from "../pages/SignIn";
 
 const AllRoutes = () => {
@@ -13,7 +13,7 @@ const AllRoutes = () => {
         <SignIn />
       </Route>
       <Route exact path="/search">
-        <About />
+        <Search />
       </Route>
     </div>
   );

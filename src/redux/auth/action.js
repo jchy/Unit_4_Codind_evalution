@@ -1,10 +1,10 @@
 import { authConstants } from "./actionTypes";
 
-export const loginSuccess = (token) => {
+export const loginSuccess = (auth) => {
   return {
     type: authConstants.LOGIN_SUCCESS,
     payload: {
-      token: token
+      isAuth: auth
     }
   };
 };

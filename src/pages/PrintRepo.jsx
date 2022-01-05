@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { getTodos } from "./api";
+import { getRepo } from "./api";
 import Pagination from "./Pagination";
 
 function PrintRepo({ allFunc }) {
@@ -13,7 +13,7 @@ function PrintRepo({ allFunc }) {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getTodos());
+    dispatch(getRepo());
   }, []);
 
   todos = todos.filter(

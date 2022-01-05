@@ -64,14 +64,12 @@ function Search() {
           Page
         </button>
       </div>
-      <div>
+      <div state={{ display: "flex", gap: "20px" }}>
         {todos?.map((i) => (
           <div
             style={{
               border: "1px solid black",
-              // gap: "2rem",
               padding: "20px"
-              // flexDirection: "column"
             }}
             key={i.id}
           >

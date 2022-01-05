@@ -1,6 +1,7 @@
 import { Route } from "react-router-dom";
 import Home from "../pages/Home";
 import About from "../pages/About";
+import SignIn from "../pages/SignIn";
 
 const AllRoutes = () => {
   return (
@@ -9,7 +10,7 @@ const AllRoutes = () => {
         <Home />
       </Route>
       <Route exact path="/login">
-        <About />
+        <SignIn />
       </Route>
       <Route exact path="/search">
         <About />

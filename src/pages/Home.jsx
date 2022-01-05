@@ -26,13 +26,14 @@
 // }
 
 // export default Todo;
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuid } from "uuid";
 import Pagination from "./Pagination";
 import { addTodos, getTodos } from "./api";
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
 import { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 function Todo() {
   const [page, setPage] = useState(1);
@@ -64,6 +65,10 @@ function Todo() {
     setPerPage(perPageInput);
   };
 
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  if (!isAuth) {
+    return <Redirect to="/login" />;
+  }
   return (
     <div>
       <TodoInput onAdd={handleAdd} onSearch={handlePage} />

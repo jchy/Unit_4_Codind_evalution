@@ -11,6 +11,7 @@ function SignIn() {
   };
   const isAuth = useSelector((state) => state.auth.isAuth);
   if (isAuth) {
+    alert("you are already logged in");
     return <Redirect to="/" />;
   }
   return (

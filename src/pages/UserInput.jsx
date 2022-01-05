@@ -2,6 +2,9 @@ import { createContext, useState } from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
+// import Stack from "@mui/material/Stack";
+import Autocomplete from "@mui/material/Autocomplete";
 
 export const AppContext = createContext();
 
@@ -10,13 +13,13 @@ function UserInput({ onAdd, onSearch }) {
   const [page, setPage] = useState(1);
 
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <Stack direction="row" spacing={2}>
         <input
           value={state}
           onChange={(e) => setState(e.target.value)}
           placeholder="Search Repository On Github"
-          style={{ marginLeft: "50px", fontSize: "20px" }}
+          style={{ fontSize: "20px" }}
         />
         <Button
           variant="contained"
@@ -34,8 +37,8 @@ function UserInput({ onAdd, onSearch }) {
           placeholder="Search Page"
         />
         <Button
-          variant="outlined"
-          color="error"
+          variant="contained"
+          color="success"
           onClick={() => {
             onSearch(page);
             setPage(1);
